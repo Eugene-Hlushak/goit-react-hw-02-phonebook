@@ -1,14 +1,29 @@
-export default function Phonebook({
-  handleSubmit,
-  number,
-  name,
-  handleChange,
-  contacts,
-}) {
-  return (
-    <>
-      <h2>Phonebook</h2>
-      <form onSubmit={handleSubmit}>
+import { Component } from 'react';
+import { nanoid } from 'nanoid';
+
+export default class ContactForm extends Component {
+  state = {
+    name: '',
+    number: '',
+  };
+
+  onSubmit = e => {
+    e.preventDefault();
+    this.props.onSubmit({
+      id: nanoid(),
+      name: this.state.name,
+      number: this.state.number,
+    });
+    this.reset();
+  };
+
+  onChangeHandler = e => this.setState({ [e.target.name]: e.target.value });
+
+  reset = () => this.setState({ name: '', number: '' });
+
+  render() {
+    return (
+      <form onSubmit={this.onSubmit}>
         <label>
           Name
           <input
@@ -16,8 +31,8 @@ export default function Phonebook({
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            value={name}
-            onChange={handleChange}
+            value={this.state.name}
+            onChange={this.onChangeHandler}
             required
           />
         </label>
@@ -29,26 +44,13 @@ export default function Phonebook({
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            value={number}
-            onChange={handleChange}
+            value={this.state.number}
+            onChange={this.onChangeHandler}
             required
           />
         </label>
         <button type="submit">Add contact</button>
       </form>
-
-      <h2>Contacts</h2>
-      <label>
-        Find contact by name
-        <input type="text" name="filter" onChange={handleChange} />
-      </label>
-      <ul>
-        {contacts.map(contact => (
-          <li key={contact.id}>
-            {contact.name}: {contact.number}
-          </li>
-        ))}
-      </ul>
-    </>
-  );
+    );
+  }
 }
