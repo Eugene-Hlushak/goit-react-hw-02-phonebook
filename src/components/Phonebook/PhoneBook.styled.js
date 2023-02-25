@@ -8,7 +8,7 @@ export const Title = styled.h2`
   margin-bottom: 20px;
 `;
 
-export const CoctactForm = styled.form`
+export const AddContactForm = styled.form`
   width: 500px;
   padding: 20px;
 
@@ -33,7 +33,7 @@ export const FilterLabel = styled.label`
   margin-bottom: 15px;
 `;
 
-export const ContactListItem = styled.li`
+export const ContactItem = styled.li`
   margin-bottom: 10px;
 `;
 

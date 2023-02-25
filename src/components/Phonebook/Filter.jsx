@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { FilterLabel, FormInput } from './PhoneBook';
+import { FilterLabel, FormInput } from './PhoneBook.styled';
 
 export default function Filter({ handleChange }) {
   return (

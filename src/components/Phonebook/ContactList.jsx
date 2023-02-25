@@ -1,17 +1,10 @@
 import PropTypes from 'prop-types';
-import { ContactListItem, Contact } from './PhoneBook';
+import ContactListItem from 'components/Phonebook/ContactListItem';
 
 export default function ContactList({ contacts, deleteContact }) {
   return (
     <ul>
-      {contacts.map(contact => (
-        <ContactListItem key={contact.id}>
-          <Contact>
-            {contact.name}: {contact.number}
-          </Contact>
-          <button onClick={() => deleteContact(contact.id)}>Delete</button>
-        </ContactListItem>
-      ))}
+      <ContactListItem contacts={contacts} deleteContact={deleteContact} />
     </ul>
   );
 }
