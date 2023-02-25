@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
+import { ContactListItem, Contact } from './PhoneBook';
 
 export default function ContactList({ contacts, deleteContact }) {
   return (
     <ul>
       {contacts.map(contact => (
-        <li key={contact.id}>
-          <span>
+        <ContactListItem key={contact.id}>
+          <Contact>
             {contact.name}: {contact.number}
-          </span>
+          </Contact>
           <button onClick={() => deleteContact(contact.id)}>Delete</button>
-        </li>
+        </ContactListItem>
       ))}
     </ul>
   );

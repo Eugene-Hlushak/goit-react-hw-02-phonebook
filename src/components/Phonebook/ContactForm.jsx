@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+import { CoctactForm, FormInput, FormLabel } from './PhoneBook';
 
 export default class ContactForm extends Component {
   state = {
@@ -23,10 +24,10 @@ export default class ContactForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
-        <label>
+      <CoctactForm onSubmit={this.onSubmit}>
+        <FormLabel>
           Name
-          <input
+          <FormInput
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -35,11 +36,11 @@ export default class ContactForm extends Component {
             onChange={this.onChangeHandler}
             required
           />
-        </label>
+        </FormLabel>
 
-        <label>
+        <FormLabel>
           Number
-          <input
+          <FormInput
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -48,9 +49,9 @@ export default class ContactForm extends Component {
             onChange={this.onChangeHandler}
             required
           />
-        </label>
+        </FormLabel>
         <button type="submit">Add contact</button>
-      </form>
+      </CoctactForm>
     );
   }
 }
